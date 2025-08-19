@@ -26,14 +26,21 @@ This project demonstrates clean architecture with Controller-Service-Repository 
 📂 Project Structure
 
 src/main/java/com/example/userapp/
+
 │
 
 ├── controller/ # REST Controllers
+
 ├── service/ # Business Logic
+
 ├── repository/ # JPA Repositories
+
 ├── model/ # Entity Classes
+
 ├── dto/ # Request/Response DTOs
+
 ├── exception/ # Custom Exceptions + GlobalExceptionHandler
+
 └── UserAppApplication.java
 
 1️⃣ Clone the repository
@@ -70,13 +77,17 @@ Request Body:
 }
 
 - Get All Users
+
 GET /users/getAllUsers
 
 - Get User by ID
+
 GET /users/getUser/{id}
 
 - Update User
+
 PUT /users/updateUser/{id}
+
 Request Body:
 {
   "name": "Updated Name",
@@ -85,10 +96,13 @@ Request Body:
 }
 
 - Delete User
+
 DELETE /users/deleteUser/{id}
 
 🛡️ Validation Examples
 
 "email": "" → ❌ Email cannot be blank
+
 "email": "invalidemail" → ❌ Must be a valid email format
+
 "name": "" → ❌ Name cannot be blank
