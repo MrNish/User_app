@@ -27,6 +27,7 @@ This project demonstrates clean architecture with Controller-Service-Repository 
 
 src/main/java/com/example/userapp/
 │
+
 ├── controller/ # REST Controllers
 ├── service/ # Business Logic
 ├── repository/ # JPA Repositories
@@ -38,6 +39,7 @@ src/main/java/com/example/userapp/
 1️⃣ Clone the repository
 
 git clone https://github.com/MrNish/User_app.git
+
 cd User_app
 
 2️⃣ Configure database
@@ -57,7 +59,9 @@ mvn spring-boot:run
 📌 API Endpoints
 
 - Create User
+  
 POST /users/addUser/
+
 Request Body:
 {
   "name": "John Doe",
