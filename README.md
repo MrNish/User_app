@@ -5,48 +5,51 @@ This project demonstrates clean architecture with Controller-Service-Repository 
 
 🚀 Features
 
-✅ Create new users
-✅ Get all users
-✅ Get user by ID
-✅ Update user details
-✅ Delete user
-✅ DTOs for request/response
-✅ Input validation (e.g., email format, non-empty fields, min length)
-✅ Global exception handling with custom error responses
-✅ Clean layered architecture
+Create new users
+
+Get all users
+
+Get user by ID
+
+Update user details
+
+Delete user
+
+DTOs for request/response
+
+Input validation (e.g., email format, non-empty fields, min length)
+
+Global exception handling with custom error responses
+
+Clean layered architecture
 
 🛠️ Tech Stack
 
-- Backend: Java 17+, Spring Boot
-- Build Tool: Maven
-- Database: MySQL
-- ORM: Spring Data JPA (Hibernate)
-- Validation: Jakarta Validation API
+Backend: Java 17+, Spring Boot
+
+Build Tool: Maven
+
+Database: MySQL
+
+ORM: Spring Data JPA (Hibernate)
+
+Validation: Jakarta Validation API
 
 📂 Project Structure
 
 src/main/java/com/example/userapp/
-
 │
-
 ├── controller/ # REST Controllers
-
 ├── service/ # Business Logic
-
 ├── repository/ # JPA Repositories
-
 ├── model/ # Entity Classes
-
 ├── dto/ # Request/Response DTOs
-
 ├── exception/ # Custom Exceptions + GlobalExceptionHandler
-
 └── UserAppApplication.java
 
 1️⃣ Clone the repository
 
 git clone https://github.com/MrNish/User_app.git
-
 cd User_app
 
 2️⃣ Configure database
@@ -65,10 +68,8 @@ mvn spring-boot:run
 
 📌 API Endpoints
 
-- Create User
-  
-POST /users/addUser/
-
+Create User
+POST /api/users
 Request Body:
 {
   "name": "John Doe",
@@ -76,18 +77,14 @@ Request Body:
   "age": 25
 }
 
-- Get All Users
+Get All Users
+GET /api/users
 
-GET /users/getAllUsers
+Get User by ID
+GET /api/users/{id}
 
-- Get User by ID
-
-GET /users/getUser/{id}
-
-- Update User
-
-PUT /users/updateUser/{id}
-
+Update User
+PUT /api/users/{id}
 Request Body:
 {
   "name": "Updated Name",
@@ -95,9 +92,8 @@ Request Body:
   "age": 30
 }
 
-- Delete User
-
-DELETE /users/deleteUser/{id}
+Delete User
+DELETE /api/users/{id}
 
 🛡️ Validation Examples
 
