@@ -1,7 +1,11 @@
 package com.example.user.Controller;
 
+import com.example.user.Dto.UserDto;
 import com.example.user.Entity.User;
 import com.example.user.Service.UserService;
+import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,25 +21,26 @@ public class UserController {
     }
 
     @GetMapping("/getAllUsers")
-    public List<User> getAllUser() {
+    public ResponseEntity<List<User>> getAllUser() {
         List<User> users = userService.getAllUser();
-        return users;
+        return ResponseEntity.ok(users);
     }
 
     @GetMapping("/getUser")
-    public User getUser(@RequestParam int id) {
-        return userService.getUser(id);
+    public ResponseEntity<User> getUser(@RequestParam int id) {
+        User user = userService.getUser(id);
+        return ResponseEntity.ok(user);
     }
 
     @PostMapping("/addUser")
-    public String addUser(@RequestBody User user) {
-        userService.addUser(user);
-        return "UserAdded";
+    public ResponseEntity<User> addUser(@Valid @RequestBody UserDto userDto) {
+        User user = userService.addUser(userDto);
+        return new ResponseEntity<>(user, HttpStatus.CREATED);
     }
 
     @DeleteMapping("/delete/{id}")
-    public String deleteUser(@PathVariable int id) {
-        userService.deleteUser(id);
-        return "UserDeleted";
+    public ResponseEntity<String> deleteUser(@PathVariable int id) {
+        String message = userService.deleteUser(id);
+        return ResponseEntity.noContent().build();
     }
 }
