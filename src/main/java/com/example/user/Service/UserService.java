@@ -32,6 +32,13 @@ public class UserService {
         return userRepo.save(user);
     }
 
+    public User updateUser(UserDto userDto, int id) {
+        User exisitingUser = userRepo.findById(id).orElseThrow(() -> new UserNotFoundException("User with ID: " + id + " not found"));
+        exisitingUser.setEmail(userDto.getEmail());
+        exisitingUser.setName(userDto.getName());
+        return userRepo.save(exisitingUser);
+    }
+
     public String deleteUser(int id) {
         User user = userRepo.findById(id)
                 .orElseThrow(() -> new UserNotFoundException("User with ID " + id + " not found"));
