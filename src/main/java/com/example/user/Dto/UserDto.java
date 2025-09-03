@@ -4,10 +4,12 @@ package com.example.user.Dto;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 public class UserDto {
 
     @NotBlank(message = "Name can't be blank")
+    @Size(min = 4, max = 10)
     private String name;
 
     @Email(message = "Email must be valid")
