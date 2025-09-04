@@ -8,6 +8,8 @@ import jakarta.validation.constraints.Size;
 
 public class UserDto {
 
+    private int id;
+
     @NotBlank(message = "Name can't be blank")
     @Size(min = 4, max = 10)
     private String name;
@@ -15,6 +17,16 @@ public class UserDto {
     @Email(message = "Email must be valid")
     @NotBlank(message = "Email cannot be blank")
     private String email;
+
+    public UserDto(int id, String name, String email) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+    }
+
+    public int getId() {
+        return id;
+    }
 
     public String getName() {
         return name;
@@ -30,5 +42,9 @@ public class UserDto {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

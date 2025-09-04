@@ -7,6 +7,7 @@ import com.example.user.exceptions.UserNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class UserService {
@@ -17,26 +18,40 @@ public class UserService {
         this.userRepo = userRepo;
     }
 
-    public List<User> getAllUser() {
-        return userRepo.findAll();
+    public UserDto mapToDto(User user) {
+        return new UserDto(user.getId(), user.getName(), user.getEmail());
     }
 
-    public User getUser(int id) {
-        return userRepo.findById(id).orElseThrow(() -> new UserNotFoundException("User with ID " + id + " not found"));
-    }
-
-    public User addUser(UserDto userDto) {
+    public User mapToEntity(UserDto userDto) {
         User user = new User();
+        user.setId(userDto.getId());
         user.setName(userDto.getName());
         user.setEmail(userDto.getEmail());
-        return userRepo.save(user);
+        return user;
     }
 
-    public User updateUser(UserDto userDto, int id) {
+    public List<UserDto> getAllUser() {
+        List<User> users =  userRepo.findAll();
+        return users.stream()
+                .map(user -> new UserDto(user.getId(), user.getName(), user.getEmail()))
+                .collect(Collectors.toList());
+    }
+
+    public UserDto getUser(int id) {
+        User user =  userRepo.findById(id).orElseThrow(() -> new UserNotFoundException("User with ID " + id + " not found"));
+        return mapToDto(user);
+    }
+
+    public UserDto addUser(UserDto userDto) {
+        User user = mapToEntity(userDto);
+        return mapToDto(userRepo.save(user));
+    }
+
+    public UserDto updateUser(UserDto userDto, int id) {
         User exisitingUser = userRepo.findById(id).orElseThrow(() -> new UserNotFoundException("User with ID: " + id + " not found"));
         exisitingUser.setEmail(userDto.getEmail());
         exisitingUser.setName(userDto.getName());
-        return userRepo.save(exisitingUser);
+        return mapToDto(userRepo.save(exisitingUser));
     }
 
     public String deleteUser(int id) {

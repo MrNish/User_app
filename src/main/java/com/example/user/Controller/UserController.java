@@ -21,26 +21,26 @@ public class UserController {
     }
 
     @GetMapping("/getAllUsers")
-    public ResponseEntity<List<User>> getAllUser() {
-        List<User> users = userService.getAllUser();
+    public ResponseEntity<List<UserDto>> getAllUser() {
+        List<UserDto> users = userService.getAllUser();
         return ResponseEntity.ok(users);
     }
 
     @GetMapping("/getUser")
-    public ResponseEntity<User> getUser(@RequestParam int id) {
-        User user = userService.getUser(id);
+    public ResponseEntity<UserDto> getUser(@RequestParam int id) {
+        UserDto user = userService.getUser(id);
         return ResponseEntity.ok(user);
     }
 
     @PostMapping("/addUser")
-    public ResponseEntity<User> addUser(@Valid @RequestBody UserDto userDto) {
-        User user = userService.addUser(userDto);
+    public ResponseEntity<UserDto> addUser(@Valid @RequestBody UserDto userDto) {
+        UserDto user = userService.addUser(userDto);
         return new ResponseEntity<>(user, HttpStatus.CREATED);
     }
 
     @PutMapping("/updateUser/{id}")
-    public ResponseEntity<User> addUser(@Valid @RequestBody UserDto userDto, @PathVariable int id) {
-        User updateUser = userService.updateUser(userDto, id);
+    public ResponseEntity<UserDto> addUser(@Valid @RequestBody UserDto userDto, @PathVariable int id) {
+        UserDto updateUser = userService.updateUser(userDto, id);
         return ResponseEntity.status(HttpStatus.OK).body(updateUser);
     }
 
